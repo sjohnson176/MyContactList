@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#E6E6FA</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="navbar_background">#1a1a48</color>
+    <color name="toolbar_background">#bebebe</color>
+    <color name="scroll_view_background">#FFFFE0</color>
+    <color name="dialog_button_color">#26C6DA</color>
+    <color name="settings_back_red">#F08080</color>
+    <color name="settings_back_blue">#F0FFFF</color>
+    <color name="settings_back_grey">#bebebe</color>
+    <color name="system_red">#ff0000</color>
+    <color name="system_transparent">#00000000</color>
+    <color name="system_blue">#0000ff</color>
+
+</resources>
