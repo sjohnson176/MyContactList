@@ -28,15 +28,26 @@
             android:layout_marginStart="20dp" />
 
         <Button
-            android:id="@+id/buttonAdd"
-            android:text="Add Contact"
+            android:id="@+id/buttonAddFav"
+            android:text="Add Favorites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@id/buttonDelete"
             android:layout_centerVertical="true"
+            android:layout_marginStart="20dp" />
+
+        <Button
+            android:id="@+id/buttonAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="163dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginEnd="20dp" />
+            android:layout_toEndOf="@+id/buttonDelete"
+            android:text="Add Contact" />
 
     </RelativeLayout>
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -19,14 +20,55 @@
 
     <TextView
         android:id="@+id/textPhoneNumber"
-        android:text="Phone Number"
+        android:text="Home: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textContactName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
-        android:layout_below="@+id/textContactName" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/textCellNumber"
+        android:text="Cell: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textPhoneNumber"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@id/textPhoneNumber"
+        android:layout_toRightOf="@id/textPhoneNumber"/>
+
+    <TextView
+        android:id="@+id/textStreetAddress"
+        android:text="Street Address: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textContactName"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginleft="15"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@id/textPhoneNumber"
+        android:layout_toRightOf="@id/textPhoneNumber"/>
+
+
+    <ImageButton
+        android:id="@+id/buttonFavContact"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@id/textContactName"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/contactlist_fav_contacts" />
 
     <Button
         android:id="@+id/buttonDeleteContact"
@@ -37,7 +79,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
         android:background="@color/system_transparent"

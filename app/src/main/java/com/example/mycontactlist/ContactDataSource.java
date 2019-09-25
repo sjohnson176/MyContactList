@@ -68,9 +68,15 @@ public class ContactDataSource {
             updateValues.put("email", c.getEMail());
             updateValues.put("birthday",
                     String.valueOf(c.getBirthday().getTimeInMillis()));
+            if (c.getBff()) {
+                updateValues.put("bff", 1);
 
+            }
+            else {
+                updateValues.put("bff", 0);
+            }
             didSucceed = database.update("contact", updateValues,
-                    "_id=" + rowId, null) > 0;
+                    "_id = " + rowId, null) > 0;
         }
         catch (Exception e) {
             // Do nothing -will return false if there is an exception
@@ -79,6 +85,8 @@ public class ContactDataSource {
         return didSucceed;
 
     }
+
+    //public boolean updateConactBff(Contact)
 
     public boolean updateContactAddress (ContactAddress ca) {
         boolean didSucceed = false;

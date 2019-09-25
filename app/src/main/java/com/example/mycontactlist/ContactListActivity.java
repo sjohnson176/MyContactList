@@ -17,6 +17,7 @@ import java.util.List;
 
 public class ContactListActivity extends AppCompatActivity {
     boolean isDeleting = false;
+    boolean isAddingFavs = false;
     ContactAdapter adapter;
 
     ArrayList<Contact> contacts;
@@ -31,6 +32,8 @@ public class ContactListActivity extends AppCompatActivity {
         initItemClick();
         initAddContactButton();
         initDeleteButton();
+        initAddContactButton();
+        initAddFavButton();
 
     }
 
@@ -114,6 +117,16 @@ public class ContactListActivity extends AppCompatActivity {
                 Contact selectedContact = contacts.get(position);
                 if (isDeleting) {
                     adapter.showDelete(position, itemClicked, ContactListActivity.this, selectedContact);
+                    //adapter.showFav(position, itemClicked, ContactListActivity.this, selectedContact);
+
+                }
+                else if (isAddingFavs) {
+                    adapter.showFav(position, itemClicked, ContactListActivity.this, selectedContact);
+
+                }
+                else if (isDeleting && isAddingFavs) {
+                    adapter.showDelete(position, itemClicked, ContactListActivity.this, selectedContact);
+                    adapter.showFav(position, itemClicked, ContactListActivity.this, selectedContact);
 
                 }
                 else {
@@ -123,6 +136,8 @@ public class ContactListActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }
+
+
 
             }
 
@@ -159,6 +174,7 @@ public class ContactListActivity extends AppCompatActivity {
                 else {
                     deleteButton.setText("Done Deleting");
                     isDeleting = true;
+                    //adapter.showFav(position, itemClicked, ContactListActivity.this, selectedContact);
 
                 }
 
@@ -166,6 +182,24 @@ public class ContactListActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    private void initAddFavButton() {
+        final Button addFavButton = (Button) findViewById(R.id.buttonAddFav);
+        addFavButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isAddingFavs) {
+                    addFavButton.setText("Add Favs");
+                    isAddingFavs = false;
+
+                }
+                else {
+                    addFavButton.setText("Done Adding Favs");
+                    isAddingFavs = true;
+                }
+            }
+        });
     }
 
 }
