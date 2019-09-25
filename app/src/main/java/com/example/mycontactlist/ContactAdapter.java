@@ -36,13 +36,30 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             }
 
             TextView contactName = (TextView) v.findViewById(R.id.textContactName);
+            if (position % 2 == 0) {
+                contactName.setTextColor(parent.getResources().getColor(R.color.system_red));
+
+            }
+            else {
+                contactName.setTextColor(parent.getResources().getColor(R.color.system_blue));
+
+            }
             TextView contactHomeNumber = (TextView) v.findViewById(R.id.textPhoneNumber);
             TextView contactCellNumber = (TextView) v.findViewById(R.id.textCellNumber);
+            TextView contactAddress = (TextView) v.findViewById(R.id.textStreetAddress);
+            TextView contactCity = (TextView) v.findViewById(R.id.textCity);
+            TextView contactState = (TextView) v.findViewById(R.id.textState);
+            TextView contactZip = (TextView) v.findViewById(R.id.textZip);
             ImageButton ib = (ImageButton) v.findViewById(R.id.buttonFavContact);
             Button b = (Button) v.findViewById(R.id.buttonDeleteContact);
             contactName.setText(contact.getContactName());
             contactHomeNumber.setText("Home: " + contact.getPhoneNumber());
             contactCellNumber.setText("Cell: " + contact.getCellNumber());
+            contactAddress.setText("Address: " + contact.getStreetAddress());
+            contactCity.setText(contact.getCity());
+            contactState.setText(contact.getState());
+            contactZip.setText(contact.getZipCode());
+
             //showFav(position, convertView, adapterContext, contact);
             //b.setVisibility(View.INVISIBLE);
         }

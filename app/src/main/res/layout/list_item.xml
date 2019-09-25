@@ -35,7 +35,7 @@
         android:text="Cell: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textPhoneNumber"
+        android:layout_below="@+id/textContactName"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
@@ -44,17 +44,47 @@
 
     <TextView
         android:id="@+id/textStreetAddress"
-        android:text="Street Address: "
+        android:text="Address: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textContactName"
+        android:layout_below="@+id/textPhoneNumber"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="15dp"
-        android:layout_marginleft="15"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@id/textPhoneNumber"
         android:layout_toRightOf="@id/textPhoneNumber"/>
+
+    <TextView
+        android:id="@+id/textCity"
+        android:text="City: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textPhoneNumber"
+        android:layout_toRightOf="@id/textStreetAddress"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/textState"
+        android:text="State: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textPhoneNumber"
+        android:layout_toRightOf="@id/textCity"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/textZip"
+        android:text="Zip Code: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textPhoneNumber"
+        android:layout_toRightOf="@id/textState"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp" />
 
 
     <ImageButton
