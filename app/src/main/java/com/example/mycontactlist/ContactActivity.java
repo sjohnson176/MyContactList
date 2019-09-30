@@ -8,6 +8,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.ImageButton;
 import android.widget.ToggleButton;
 import android.widget.TextView;
@@ -48,6 +50,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         initChangeDateButton();
         initTextChangedEvents();
         initSaveButton();
+        initBffSwitch();
 
     }
 
@@ -131,6 +134,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         EditText editEmail = (EditText) findViewById(R.id.editEMail);
         Button buttonChange = (Button) findViewById(R.id.btnBirthday);
         Button buttonSave = (Button) findViewById(R.id.buttonSave);
+        Switch switchBff = (Switch) findViewById(R.id.switchBff);
 
         editName.setEnabled(enabled);
         editAddress.setEnabled(enabled);
@@ -142,6 +146,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         editEmail.setEnabled(enabled);
         buttonChange.setEnabled(enabled);
         buttonSave.setEnabled(enabled);
+        switchBff.setEnabled(enabled);
 
         if (enabled) {
 
@@ -463,6 +468,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         EditText editCell = (EditText) findViewById(R.id.editCell);
         EditText editEmail = (EditText) findViewById(R.id.editEMail);
         TextView birthDay = (TextView) findViewById(R.id.textBirthday);
+        Switch switchBff = (Switch) findViewById(R.id.switchBff);
 
         editName.setText(currentContact.getContactName());
         editAddress.setText(currentContact.getStreetAddress());
@@ -474,5 +480,59 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         editEmail.setText(currentContact.getEMail());
         birthDay.setText(DateFormat.format("MM/dd/yyyy",
                 currentContact.getBirthday().getTimeInMillis()).toString());
+        switchBff.setChecked(ds.getContactBff(id).equalsIgnoreCase("1"));
+
+    }
+
+    private void initBffSwitch() {
+
+        final ContactDataSource ds = new ContactDataSource(ContactActivity.this);
+
+        final Switch switchBff = (Switch) findViewById(R.id.switchBff);
+        if (currentContact.getBff() == 1) {
+            switchBff.setChecked(true);
+
+        }
+        else {
+            switchBff.setChecked(false);
+
+        }
+
+        switchBff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean on) {
+                if (switchBff.isChecked()) {
+                    currentContact.setBff(1);
+                    try {
+                        ds.open();
+                        ds.updateContact(currentContact);
+                        ds.close();
+
+                    }
+                    catch (Exception e) {
+                        System.out.println("could not update contact");
+
+                    }
+
+                }
+                else {
+                    currentContact.setBff(0);
+                    try {
+                        ds.open();
+                        ds.updateContact(currentContact);
+                        ds.close();
+
+                    }
+                    catch (Exception e) {
+                        System.out.println("could not update contact");
+
+                    }
+
+                }
+
+            }
+
+        });
+
     }
 }

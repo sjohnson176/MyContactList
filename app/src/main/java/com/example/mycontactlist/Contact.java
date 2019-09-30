@@ -3,7 +3,7 @@ import java.util.Calendar;
 
 public class Contact {
     private int contactID;
-    private boolean bff;
+    private int bff;
     private String contactName;
     private String streetAddress;
     private String city;
@@ -100,7 +100,7 @@ public class Contact {
         this.birthday = birthday;
     }
 
-    public boolean getBff() { return bff;}
+    public int getBff() { return bff;}
 
-    public void setBff(boolean bff) { this.bff = bff; }
+    public void setBff(int bff) { this.bff = bff; }
 }

@@ -40,6 +40,7 @@ public class ContactDataSource {
             initialValues.put("cellnumber", c.getCellNumber());
             initialValues.put("email", c.getEMail());
             initialValues.put("birthday", String.valueOf(c.getBirthday()));
+            initialValues.put("bff", c.getBff());
 
             didSucceed = database.insert("contact", null, initialValues) > 0;
 
@@ -68,14 +69,8 @@ public class ContactDataSource {
             updateValues.put("email", c.getEMail());
             updateValues.put("birthday",
                     String.valueOf(c.getBirthday().getTimeInMillis()));
-            if (c.getBff()) {
-                updateValues.put("bff", 1);
-
-            }
-            else {
-                updateValues.put("bff", 0);
-            }
-            didSucceed = database.update("contact", updateValues,
+            updateValues.put("bff", c.getBff());
+           didSucceed = database.update("contact", updateValues,
                     "_id = " + rowId, null) > 0;
         }
         catch (Exception e) {
@@ -125,6 +120,29 @@ public class ContactDataSource {
 
     }
 
+    public String getContactBff(int position) {
+        String bff = "0";
+
+        try {
+            String query = "Select bff from contact where _id = " + position;
+            Cursor cursor = database.rawQuery(query, null);
+
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                bff = cursor.getColumnName(0);
+                cursor.moveToNext();
+
+            }
+            cursor.close();
+
+        }
+        catch (Exception e) {
+
+        }
+
+        return bff;
+    }
+
     public ArrayList<String> getContactName() {
         ArrayList<String> contactNames = new ArrayList <>();
         try {
@@ -169,6 +187,7 @@ public class ContactDataSource {
                 newContact.setEMail(cursor.getString(8));
                 Calendar calendar = Calendar.getInstance();
                // calendar.setTimeInMillis(Long.valueOf(cursor.getString(9)));
+                newContact.setBff(cursor.getInt(10));
                 newContact.setBirthday(calendar);
                 contacts.add(newContact);
                 cursor.moveToNext();
@@ -203,6 +222,7 @@ public class ContactDataSource {
             Calendar calendar = Calendar.getInstance();
            // calendar.setTimeInMillis(Long.valueOf(cursor.getString(9)));
             contact.setBirthday(calendar);
+            contact.setBff(cursor.getInt(10));
 
             cursor.close();
 

@@ -1,6 +1,6 @@
 package com.example.mycontactlist;
 import android.view.LayoutInflater;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
+//import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 public class ContactAdapter extends ArrayAdapter<Contact> {
 
     private ArrayList<Contact> items;
     private Context adapterContext;
+    private int currentContactId;
 
     public ContactAdapter(Context context, ArrayList<Contact> items) {
         super(context, R.layout.list_item, items);
@@ -25,6 +26,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        currentContactId = position;
         View v = convertView;
         try {
             Contact contact = items.get(position);
@@ -50,7 +52,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             TextView contactCity = (TextView) v.findViewById(R.id.textCity);
             TextView contactState = (TextView) v.findViewById(R.id.textState);
             TextView contactZip = (TextView) v.findViewById(R.id.textZip);
-            ImageButton ib = (ImageButton) v.findViewById(R.id.buttonFavContact);
+            ImageView ib = (ImageView) v.findViewById(R.id.buttonFavContact);
             Button b = (Button) v.findViewById(R.id.buttonDeleteContact);
             contactName.setText(contact.getContactName());
             contactHomeNumber.setText("Home: " + contact.getPhoneNumber());
@@ -59,9 +61,17 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             contactCity.setText(contact.getCity());
             contactState.setText(contact.getState());
             contactZip.setText(contact.getZipCode());
+            b.setVisibility(View.INVISIBLE);
 
-            //showFav(position, convertView, adapterContext, contact);
-            //b.setVisibility(View.INVISIBLE);
+            if (contact.getBff() == 1) {
+                ib.setVisibility(View.VISIBLE);
+
+            }
+            else {
+                ib.setVisibility(View.INVISIBLE);
+
+            }
+
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -72,71 +82,12 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
     }
 
-    public void showFav(final int position, final View convertView, final Context context,
-                        final Contact contact) {
-        View v = convertView;
-        final ImageButton ib = (ImageButton) v.findViewById(R.id.buttonFavContact);
-            if (!contact.getBff()) {
-                ib.setVisibility(View.VISIBLE);
-                ib.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (!contact.getBff()) {
-                            contact.setBff(true);
-                            updateBff(contact, context);
-                            ib.setVisibility(View.VISIBLE);
-
-                        } else {
-                            contact.setBff(false);
-                            updateBff(contact, context);
-                            ib.setVisibility(View.INVISIBLE);
-
-                        }
-
-                    }
-
-                });
-
-            }
-            else {
-                hideFav(position, convertView, context);
-
-            }
-
-
-    }
-
-    public void updateBff(Contact contactToUpdate, Context context) {
-        ContactDataSource db = new ContactDataSource(context);
-        try {
-            db.open();
-            db.updateContact(contactToUpdate);
-            db.close();
-
-        }
-        catch (Exception e) {
-            Toast.makeText(adapterContext, "Update Contact Failed", Toast.LENGTH_LONG).show();
-
-        }
-        this.notifyDataSetChanged();
-
-    }
-
-    public void hideFav(int position, View convertView, Context context) {
-        View v = convertView;
-        final ImageButton ib = v.findViewById(R.id.buttonFavContact);
-        ib.setVisibility(View.INVISIBLE);
-        ib.setOnClickListener(null);
-
-    }
-
     public void showDelete(final int position, final View convertView, final Context context,
                            final Contact contact) {
         View v = convertView;
         final Button b = (Button) v.findViewById(R.id.buttonDeleteContact);
         if (b.getVisibility() == View.INVISIBLE) {
             b.setVisibility(View.VISIBLE);
-            //showFav(position, convertView, adapterContext, contact);
             b.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

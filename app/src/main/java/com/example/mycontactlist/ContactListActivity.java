@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View;
 import android.os.Bundle;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ import java.util.List;
 
 public class ContactListActivity extends AppCompatActivity {
     boolean isDeleting = false;
-    boolean isAddingFavs = false;
     ContactAdapter adapter;
 
     ArrayList<Contact> contacts;
@@ -33,7 +33,6 @@ public class ContactListActivity extends AppCompatActivity {
         initAddContactButton();
         initDeleteButton();
         initAddContactButton();
-        initAddFavButton();
 
     }
 
@@ -120,15 +119,6 @@ public class ContactListActivity extends AppCompatActivity {
                     //adapter.showFav(position, itemClicked, ContactListActivity.this, selectedContact);
 
                 }
-                else if (isAddingFavs) {
-                    adapter.showFav(position, itemClicked, ContactListActivity.this, selectedContact);
-
-                }
-                else if (isDeleting && isAddingFavs) {
-                    adapter.showDelete(position, itemClicked, ContactListActivity.this, selectedContact);
-                    adapter.showFav(position, itemClicked, ContactListActivity.this, selectedContact);
-
-                }
                 else {
                     Intent intent = new Intent(ContactListActivity.this,
                             ContactActivity.class);
@@ -174,7 +164,6 @@ public class ContactListActivity extends AppCompatActivity {
                 else {
                     deleteButton.setText("Done Deleting");
                     isDeleting = true;
-                    //adapter.showFav(position, itemClicked, ContactListActivity.this, selectedContact);
 
                 }
 
@@ -182,24 +171,6 @@ public class ContactListActivity extends AppCompatActivity {
 
         });
 
-    }
-
-    private void initAddFavButton() {
-        final Button addFavButton = (Button) findViewById(R.id.buttonAddFav);
-        addFavButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isAddingFavs) {
-                    addFavButton.setText("Add Favs");
-                    isAddingFavs = false;
-
-                }
-                else {
-                    addFavButton.setText("Done Adding Favs");
-                    isAddingFavs = true;
-                }
-            }
-        });
     }
 
 }

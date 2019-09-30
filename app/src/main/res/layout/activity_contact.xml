@@ -103,48 +103,48 @@
                 android:id="@+id/textContact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contact"
-                android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Contact" />
 
             <EditText
                 android:id="@+id/editName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_below="@+id/textContact"
-            android:ems="14"
-            android:imeOptions="actionNext"
-            android:inputType="textCapWords" >
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:ems="14"
+                android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:text="Name">
 
-            <requestFocus />
+                <requestFocus />
             </EditText>
 
             <TextView
                 android:id="@+id/textAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:layout_below="@+id/editName"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:text="Address:" />
 
             <EditText
                 android:id="@+id/editAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_below="@+id/textAddress"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:ems="15"
                 android:imeOptions="actionNext"
                 android:inputType="textCapWords" />
@@ -153,146 +153,159 @@
                 android:id="@+id/editCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_below="@+id/editAddress"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:ems="8"
                 android:imeOptions="actionNext"
-                android:nextFocusDown="@+id/editState"
-                android:inputType="textCapWords" />
+                android:inputType="textCapWords"
+                android:nextFocusDown="@+id/editState" />
 
             <EditText
                 android:id="@+id/editState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/editCity"
-                android:layout_toEndOf="@+id/editCity"
                 android:layout_alignBottom="@+id/editCity"
+                android:layout_toEndOf="@+id/editCity"
+                android:layout_toRightOf="@+id/editCity"
                 android:ems="2"
-                android:maxLength="2"
                 android:imeOptions="actionNext"
-                android:nextFocusDown="@+id/editZipCode"
-                android:inputType="textCapCharacters" />
+                android:inputType="textCapCharacters"
+                android:maxLength="2"
+                android:nextFocusDown="@+id/editZipCode" />
 
             <EditText
                 android:id="@+id/editZipCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/editState"
-                android:layout_toEndOf="@+id/editState"
                 android:layout_alignBottom="@+id/editState"
+                android:layout_toEndOf="@+id/editState"
+                android:layout_toRightOf="@+id/editState"
                 android:ems="5"
                 android:imeOptions="actionNext"
-                android:nextFocusDown="@+id/editHome"
-                android:inputType="numberSigned" />
+                android:inputType="numberSigned"
+                android:nextFocusDown="@+id/editHome" />
 
             <TextView
                 android:id="@+id/textHome"
-                android:text="Home Phone:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/editCity"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_below="@+id/editCity" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Home Phone:" />
 
             <EditText
                 android:id="@+id/editHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_below="@+id/textHome"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:ems="7"
-                android:maxLength="14"
                 android:imeOptions="actionNext"
-                android:nextFocusDown="@+id/editCell"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:maxLength="14"
+                android:nextFocusDown="@+id/editCell" />
 
             <TextView
                 android:id="@+id/textCell"
-                android:text="Cell Phone:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textHome"
+                android:layout_alignStart="@+id/editCell"
                 android:layout_alignLeft="@+id/editCell"
-                android:layout_alignStart="@+id/editCell" />
+                android:layout_alignBottom="@+id/textHome"
+                android:text="Cell Phone:" />
 
             <EditText
                 android:id="@+id/editCell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/editHome"
-                android:layout_toEndOf="@+id/editHome"
                 android:layout_alignBottom="@+id/editHome"
+                android:layout_toEndOf="@+id/editHome"
+                android:layout_toRightOf="@+id/editHome"
                 android:ems="7"
-                android:maxLength="14"
                 android:imeOptions="actionNext"
-                android:nextFocusDown="@+id/editCell"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:maxLength="14"
+                android:nextFocusDown="@+id/editCell" />
 
             <TextView
                 android:id="@+id/textEMail"
-                android:text="E-Mail Address:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/editHome"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
                 android:layout_marginStart="10dp"
-                android:layout_below="@+id/editHome" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="E-Mail Address:" />
 
             <EditText
                 android:id="@+id/editEMail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textEMail"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
                 android:layout_marginStart="10dp"
-                android:layout_below="@+id/editHome"
+                android:layout_marginLeft="10dp"
                 android:ems="13"
                 android:inputType="textEmailAddress" />
 
             <TextView
                 android:id="@+id/textBday"
-                android:text="Birthday:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/editEMail"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_below="@+id/editEMail" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Birthday:" />
 
             <TextView
                 android:id="@+id/textBirthday"
-                android:text="01/01/1970"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_alignBottom="@+id/textBday"
                 android:layout_marginStart="10dp"
-                android:layout_toRightOf="@+id/textBday"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="25dp"
                 android:layout_toEndOf="@+id/textBday"
-                android:layout_alignBottom="@+id/textBday" />
+                android:layout_toRightOf="@+id/textBday"
+                android:text="01/01/1970" />
 
             <Button
                 android:id="@+id/btnBirthday"
                 android:text="Change"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignBaseline="@+id/textBirthday"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
                 android:layout_marginEnd="10dp"
-                android:layout_alignBaseline="@+id/textBirthday" />
+                android:layout_marginRight="10dp" />
+
+            <Switch
+                android:id="@+id/switchBff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textBirthday"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                android:text="BFF" />
 
         </RelativeLayout>
 

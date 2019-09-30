@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class ContactDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "mycontacts.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
 
     // Database creation sql statement
     private static final String CREATE_TABLE_CONTACT =
@@ -34,8 +34,8 @@ public class ContactDBHelper extends SQLiteOpenHelper {
                     + newVersion + ", which will destroy all old data");
 
         if (oldVersion < newVersion) {
-            String query = "alter table contact add bestFriendForever int";
-            db.execSQL(query);
+            db.execSQL("DROP TABLE IF EXISTS contact");
+            onCreate(db);
         }
         else {
             db.execSQL("DROP TABLE IF EXISTS contact");
