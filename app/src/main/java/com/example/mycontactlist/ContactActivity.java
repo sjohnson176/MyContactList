@@ -80,7 +80,16 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
             public void onClick(View v) {
 
                 Intent intent = new Intent(ContactActivity.this,
-                        ContactMapActivity.class);
+                        GoogleMapActivity.class);
+                if (currentContact.getContactID() == -1) {
+                    Toast.makeText(getBaseContext(), "Contact must be saved before" +
+                            "it can be mapped", Toast.LENGTH_LONG).show();
+
+                }
+                else {
+                    intent.putExtra("contactid", currentContact.getContactID());
+
+                }
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
@@ -259,24 +268,24 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
 
         final EditText etState = (EditText) findViewById(R.id.editState);
         etState.addTextChangedListener(new TextWatcher() {
-        @Override
-        public void afterTextChanged(Editable s) {
-            currentContact.setState(etState.getText().toString());
+            @Override
+            public void afterTextChanged(Editable s) {
+                currentContact.setState(etState.getText().toString());
 
-        }
-        @Override
-        public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-                                      int arg3) {
-            // auto-generated method stub
+            }
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+                                          int arg3) {
+                // auto-generated method stub
 
-        }
+            }
 
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before,
-                                  int count) {
-            // auto-generated method stub
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                // auto-generated method stub
 
-        }
+            }
 
         });
 
@@ -393,8 +402,8 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
                         wasSuccessful = ds.insertContact(currentContact);
 
                         if (wasSuccessful) {
-                         int newId = ds.getLastContactId();
-                         currentContact.setContactID(newId);
+                            int newId = ds.getLastContactId();
+                            currentContact.setContactID(newId);
                         }
 
                     }

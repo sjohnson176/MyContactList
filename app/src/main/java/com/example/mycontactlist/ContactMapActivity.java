@@ -30,6 +30,8 @@ import android.widget.TextView;
 public class ContactMapActivity extends AppCompatActivity {
     LocationManager locationManager;
     LocationListener gpsListener;
+    LocationListener networkListener;
+    Location currentBestLocation;
     final int PERMISSION_REQUEST_LOCATION = 101;
 
     @Override
@@ -57,9 +59,10 @@ public class ContactMapActivity extends AppCompatActivity {
             return;
 
         }
-        
+
         try {
             locationManager.removeUpdates(gpsListener);
+            locationManager.removeUpdates(networkListener);
 
         }
         catch (Exception e) {
@@ -117,15 +120,15 @@ public class ContactMapActivity extends AppCompatActivity {
                     if (Build.VERSION.SDK_INT >= 23) {
                         if (ContextCompat.checkSelfPermission(ContactMapActivity.this,
                                 Manifest.permission.ACCESS_FINE_LOCATION) !=
-                        PackageManager.PERMISSION_GRANTED) {
+                                PackageManager.PERMISSION_GRANTED) {
 
                             if (ActivityCompat.shouldShowRequestPermissionRationale(
                                     ContactMapActivity.this,
-                                           Manifest.permission.ACCESS_FINE_LOCATION)) {
+                                    Manifest.permission.ACCESS_FINE_LOCATION)) {
 
                                 Snackbar.make(findViewById(R.id.activity_contact_map),
                                         "MyContactList requires this permission to locate " +
-                                         "your contacts", Snackbar.LENGTH_INDEFINITE).
+                                                "your contacts", Snackbar.LENGTH_INDEFINITE).
                                         setAction("OK", new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
@@ -133,8 +136,8 @@ public class ContactMapActivity extends AppCompatActivity {
                                                 ActivityCompat.requestPermissions(
                                                         ContactMapActivity.this,
                                                         new String[] {
-                                                            android.Manifest.permission.ACCESS_FINE_LOCATION},
-                                                            PERMISSION_REQUEST_LOCATION);
+                                                                android.Manifest.permission.ACCESS_FINE_LOCATION},
+                                                        PERMISSION_REQUEST_LOCATION);
                                             }
 
                                         })
@@ -164,26 +167,20 @@ public class ContactMapActivity extends AppCompatActivity {
                 EditText editCity = (EditText) findViewById(R.id.editCity);
                 EditText editState = (EditText) findViewById(R.id.editState);
                 EditText editZipCode = (EditText) findViewById(R.id.editZipCode);
-
                 String address = editAddress.getText().toString() + ", " +
                                 editCity.getText().toString() + ", " +
                                 editState.getText().toString() + ", " +
                                 editZipCode.getText().toString();
-
                 List<Address> addresses = null;
                 Geocoder geo = new Geocoder(ContactMapActivity.this);
                 try {
                     addresses = geo.getFromLocationName(address, 1);
-
                 }
                 catch (IOException e) {
                     e.printStackTrace();
-
                 }
-
                 TextView txtLat = (TextView) findViewById(R.id.editLatitude);
                 TextView txtLong = (TextView) findViewById(R.id.editLongitude);
-
                 txtLat.setText(String.valueOf(addresses.get(0).getLatitude()));
                 txtLong.setText(String.valueOf(addresses.get(0).getLongitude()));
             */
@@ -203,13 +200,13 @@ public class ContactMapActivity extends AppCompatActivity {
     // 7.5 ADDITIONAL CODE FOR STARTLOCATIONUPDATE
     private void startLocationUpdates() {
         if (Build.VERSION.SDK_INT >= 23 &&
-            ContextCompat.checkSelfPermission(getBaseContext(),
-                    android.Manifest.permission.ACCESS_FINE_LOCATION) !=
-                    PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(getBaseContext(),
-                            android.Manifest.permission.ACCESS_COARSE_LOCATION) !=
-                            PackageManager.PERMISSION_GRANTED) {
-                        return;
+                ContextCompat.checkSelfPermission(getBaseContext(),
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) !=
+                        PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(getBaseContext(),
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                        PackageManager.PERMISSION_GRANTED) {
+            return;
 
         }
 
@@ -219,12 +216,42 @@ public class ContactMapActivity extends AppCompatActivity {
                     getSystemService(Context.LOCATION_SERVICE);
             gpsListener = new LocationListener() {
                 public void onLocationChanged(Location location) {
-                    TextView txtLatitude = (TextView) findViewById(R.id.editLatitude);
-                    TextView txtLongitude = (TextView) findViewById(R.id.editLongitude);
-                    TextView txtAccuracy = (TextView) findViewById(R.id.editAccuracy);
-                    txtLatitude.setText(String.valueOf(location.getLatitude()));
-                    txtLongitude.setText(String.valueOf(location.getLongitude()));
-                    txtAccuracy.setText(String.valueOf(location.getAccuracy()));
+
+                    if (isBetterLocation(location)) {
+                        currentBestLocation = location;
+
+                        TextView txtLatitude = (TextView) findViewById(R.id.editLatitude);
+                        TextView txtLongitude = (TextView) findViewById(R.id.editLongitude);
+                        TextView txtAccuracy = (TextView) findViewById(R.id.editAccuracy);
+                        txtLatitude.setText(String.valueOf(location.getLatitude()));
+                        txtLongitude.setText(String.valueOf(location.getLongitude()));
+                        txtAccuracy.setText(String.valueOf(location.getAccuracy()));
+
+                    }
+                    // if not better just ignore
+
+                }
+
+                public void onStatusChanged(String provider, int status, Bundle extras) {}
+                public void onProviderEnabled(String provider) {}
+                public void onProviderDisabled(String provider) {}
+
+            };
+
+            networkListener = new LocationListener() {
+                public void onLocationChanged(Location location) {
+                    if (isBetterLocation(location)) {
+                        currentBestLocation = location;
+
+                        TextView txtLatitude = (TextView) findViewById(R.id.editLatitude);
+                        TextView txtLongitude = (TextView) findViewById(R.id.editLongitude);
+                        TextView txtAccuracy = (TextView) findViewById(R.id.editAccuracy);
+                        txtLatitude.setText(String.valueOf(location.getLatitude()));
+                        txtLongitude.setText(String.valueOf(location.getLongitude()));
+                        txtAccuracy.setText(String.valueOf(location.getAccuracy()));
+
+                    }
+                    // if not better just ignore
 
                 }
 
@@ -237,6 +264,9 @@ public class ContactMapActivity extends AppCompatActivity {
             locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER, 0, 0, gpsListener);
 
+            locationManager.requestLocationUpdates(
+                    LocationManager.NETWORK_PROVIDER, 0, 0, networkListener);
+
         }
         catch (Exception e) {
             Toast.makeText(getBaseContext(), "Error, Location not available",
@@ -245,14 +275,32 @@ public class ContactMapActivity extends AppCompatActivity {
 
     }
 
+    // 7.8 ISBETTERLOCATION METHOD
+    private boolean isBetterLocation(Location location) {
+        boolean isBetter = false;
+        if (currentBestLocation == null) {
+            isBetter = true;
+
+        }
+        else if (location.getAccuracy() <= currentBestLocation.getAccuracy()) {
+            isBetter = true;
+
+        }
+        else if (location.getTime() - currentBestLocation.getTime() > 5 * 60 * 1000) {
+            isBetter = true;
+
+        }
+        return isBetter;
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[],
-                                          int[] grantResults) {
+                                           int[] grantResults) {
 
         switch (requestCode) {
             case PERMISSION_REQUEST_LOCATION: {
                 if (grantResults.length > 0 &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     startLocationUpdates();
 
