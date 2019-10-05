@@ -220,15 +220,21 @@ public class ContactMapActivity extends AppCompatActivity {
                     if (isBetterLocation(location)) {
                         currentBestLocation = location;
 
-                        TextView txtLatitude = (TextView) findViewById(R.id.editLatitude);
-                        TextView txtLongitude = (TextView) findViewById(R.id.editLongitude);
-                        TextView txtAccuracy = (TextView) findViewById(R.id.editAccuracy);
+                        TextView txtLatitude = (TextView) findViewById(R.id.editBestLocationLatitude);
+                        TextView txtLongitude = (TextView) findViewById(R.id.editBestLocationLongitude);
+                        TextView txtAccuracy = (TextView) findViewById(R.id.editBestLocationAccuracy);
                         txtLatitude.setText(String.valueOf(location.getLatitude()));
                         txtLongitude.setText(String.valueOf(location.getLongitude()));
                         txtAccuracy.setText(String.valueOf(location.getAccuracy()));
 
                     }
-                    // if not better just ignore
+
+                        TextView txtLatitude = (TextView) findViewById(R.id.editGPSLatitude);
+                        TextView txtLongitude = (TextView) findViewById(R.id.editGPSLongitude);
+                        TextView txtAccuracy = (TextView) findViewById(R.id.editGPSAccuracy);
+                        txtLatitude.setText(String.valueOf(location.getLatitude()));
+                        txtLongitude.setText(String.valueOf(location.getLongitude()));
+                        txtAccuracy.setText(String.valueOf(location.getAccuracy()));
 
                 }
 
@@ -243,15 +249,21 @@ public class ContactMapActivity extends AppCompatActivity {
                     if (isBetterLocation(location)) {
                         currentBestLocation = location;
 
-                        TextView txtLatitude = (TextView) findViewById(R.id.editLatitude);
-                        TextView txtLongitude = (TextView) findViewById(R.id.editLongitude);
-                        TextView txtAccuracy = (TextView) findViewById(R.id.editAccuracy);
+                        TextView txtLatitude = (TextView) findViewById(R.id.editBestLocationLatitude);
+                        TextView txtLongitude = (TextView) findViewById(R.id.editBestLocationLongitude);
+                        TextView txtAccuracy = (TextView) findViewById(R.id.editBestLocationAccuracy);
                         txtLatitude.setText(String.valueOf(location.getLatitude()));
                         txtLongitude.setText(String.valueOf(location.getLongitude()));
                         txtAccuracy.setText(String.valueOf(location.getAccuracy()));
 
                     }
-                    // if not better just ignore
+
+                        TextView txtLatitude = (TextView) findViewById(R.id.editNetworkLatitude);
+                        TextView txtLongitude = (TextView) findViewById(R.id.editNetworkLongitude);
+                        TextView txtAccuracy = (TextView) findViewById(R.id.editNetworkAccuracy);
+                        txtLatitude.setText(String.valueOf(location.getLatitude()));
+                        txtLongitude.setText(String.valueOf(location.getLongitude()));
+                        txtAccuracy.setText(String.valueOf(location.getAccuracy()));
 
                 }
 

@@ -120,80 +120,264 @@
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/textLatitude"
+        android:id="@+id/textGpsListener"
+        android:text="GPS Listener:"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonGetLocation"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:id="@+id/textGPSLatitude"
         android:text="Latitude:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonGetLocation"
+        android:layout_below="@+id/textGpsListener"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp" />
 
     <EditText
-        android:id="@+id/editLatitude"
+        android:id="@+id/editGPSLatitude"
         android:text="None"
         android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:layout_alignBottom="@+id/textLatitude"
-        android:layout_below="@+id/buttonGetLocation"
-        android:layout_toRightOf="@+id/textLatitude"
-        android:layout_marginTop="10dp"
+        android:layout_alignBottom="@+id/textGPSLatitude"
+        android:layout_below="@+id/textGpsListener"
+        android:layout_toRightOf="@+id/textGPSLatitude"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:ems="10"
         android:inputType="number" />
 
     <TextView
-        android:id="@+id/textLongitude"
+        android:id="@+id/textGPSLongitude"
         android:text="Longitude:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textLatitude"
+        android:layout_below="@+id/textGPSLatitude"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp" />
 
     <EditText
-        android:id="@+id/editLongitude"
+        android:id="@+id/editGPSLongitude"
         android:text="None"
         android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:layout_alignBottom="@+id/textLongitude"
-        android:layout_below="@+id/textLatitude"
-        android:layout_toRightOf="@+id/textLongitude"
-        android:layout_marginTop="10dp"
+        android:layout_alignBottom="@+id/textGPSLongitude"
+        android:layout_below="@+id/textGPSLatitude"
+        android:layout_toRightOf="@+id/textGPSLongitude"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:ems="10"
         android:inputType="number" />
 
 
     <TextView
-        android:id="@+id/textAccuracy"
+        android:id="@+id/textGPSAccuracy"
         android:text="Accuracy:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textLongitude"
+        android:layout_below="@+id/textGPSLongitude"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp" />
 
     <EditText
-        android:id="@+id/editAccuracy"
+        android:id="@+id/editGPSAccuracy"
         android:text="None"
         android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:layout_alignBottom="@+id/textAccuracy"
-        android:layout_below="@+id/textLongitude"
-        android:layout_toRightOf="@+id/textAccuracy"
-        android:layout_marginTop="10dp"
+        android:layout_alignBottom="@+id/textGPSAccuracy"
+        android:layout_below="@+id/textGPSLongitude"
+        android:layout_toRightOf="@+id/textGPSAccuracy"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:ems="10"
         android:inputType="number" />
 
+    <TextView
+        android:id="@+id/textNetworkListener"
+        android:text="Network Listener:"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editGPSAccuracy"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:id="@+id/textNetworkLatitude"
+        android:text="Latitude:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textNetworkListener"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/editNetworkLatitude"
+        android:text="None"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_alignBottom="@+id/textNetworkLatitude"
+        android:layout_below="@+id/textNetworkListener"
+        android:layout_toRightOf="@+id/textNetworkLatitude"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textNetworkLongitude"
+        android:text="Longitude:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textNetworkLatitude"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/editNetworkLongitude"
+        android:text="None"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_alignBottom="@+id/textNetworkLongitude"
+        android:layout_below="@+id/textNetworkLatitude"
+        android:layout_toRightOf="@+id/textNetworkLongitude"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:ems="10"
+        android:inputType="number" />
+
+
+    <TextView
+        android:id="@+id/textNetworkAccuracy"
+        android:text="Accuracy:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textNetworkLongitude"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/editNetworkAccuracy"
+        android:text="None"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_alignBottom="@+id/textNetworkAccuracy"
+        android:layout_below="@+id/textNetworkLongitude"
+        android:layout_toRightOf="@+id/textNetworkAccuracy"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textBestLocationListener"
+        android:text="Best Location Listener:"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editNetworkAccuracy"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:id="@+id/textBestLocationLatitude"
+        android:text="Latitude:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textBestLocationListener"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/editBestLocationLatitude"
+        android:text="None"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_alignBottom="@+id/textBestLocationLatitude"
+        android:layout_below="@+id/textBestLocationListener"
+        android:layout_toRightOf="@+id/textBestLocationLatitude"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textBestLocationLongitude"
+        android:text="Longitude:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textBestLocationLatitude"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/editBestLocationLongitude"
+        android:text="None"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_alignBottom="@+id/textBestLocationLongitude"
+        android:layout_below="@+id/textBestLocationLatitude"
+        android:layout_toRightOf="@+id/textBestLocationLongitude"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:ems="10"
+        android:inputType="number" />
+
+
+    <TextView
+        android:id="@+id/textBestLocationAccuracy"
+        android:text="Accuracy:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textBestLocationLongitude"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/editBestLocationAccuracy"
+        android:text="None"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_alignBottom="@+id/textBestLocationAccuracy"
+        android:layout_below="@+id/textBestLocationLongitude"
+        android:layout_toRightOf="@+id/textBestLocationAccuracy"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:ems="10"
+        android:inputType="number" />
 
 </RelativeLayout>

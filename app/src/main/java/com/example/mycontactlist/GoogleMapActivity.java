@@ -40,10 +40,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.snackbar.Snackbar;
+
 
 public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks,
@@ -213,7 +215,8 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
                 builder.include(point);
 
                 gMap.addMarker(new MarkerOptions().position(point).
-                        title(currentContact.getContactName()).snippet(address));
+                        title(currentContact.getContactName() + "\n" + currentContact.getPhoneNumber()).snippet(address).
+                        icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
             }
             gMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(),
@@ -241,7 +244,8 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
                         LatLng(addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
 
                 gMap.addMarker(new MarkerOptions().position(point).
-                        title(currentContact.getContactName()).snippet(address));
+                        title(currentContact.getContactName() + "\n" + currentContact.getPhoneNumber()).snippet(address).
+                        icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 16));
             }
             else {
